@@ -39,7 +39,7 @@ template "keepalived.conf" do
 end
 
 service "keepalived" do
-  supports :restart => true
+  supports :restart => true, :reload => true
   action [:enable, :start]
-  subscribes :restart, "template[keepalived.conf]"
+  subscribes :reload, "template[keepalived.conf]"
 end
