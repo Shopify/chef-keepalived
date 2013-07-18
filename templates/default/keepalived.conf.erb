@@ -48,6 +48,13 @@ vrrp_instance <%= name.upcase %> {
     <%= address %>
     <% end %>
   }
+  <% if instance['track_interface'] %>
+  track_interface {
+    <% Array(instance['track_interface']).each do |intf| %>
+    <%= intf %>
+    <% end %>
+  }
+  <% end %>
   <% if instance['track_script'] %>
   track_script {
     <% Array(instance['track_script']).each do |script| %>

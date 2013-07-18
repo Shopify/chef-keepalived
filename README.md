@@ -74,6 +74,7 @@ within the instance hash:
 * `:virtual_router_ids => {}`     # Node name mapped virtual router IDs
 * `:priorities => {}`             # Node name mapped priorities
 * `:track_script => 'check_name'` # Name (or array of names) of check script in use for instance
+* `:track_interface => 'eth0'`    # Name (or array of names) of interfaces tracked for instance
 * `:nopreempt => false`           # Do not preempt
 * `:advert_int => 1`              # Set advert_int
 * `:auth_type => nil`             # Enable authentication (:pass or :ah)
@@ -110,6 +111,7 @@ override_attributes(
           'backup.domain' => 100
         },
         :track_script => 'chk_haproxy',
+        :track_interface => 'eth1',
         :nopreempt => false,
         :advert_int => 1,
         :auth_type => :pass,
@@ -134,6 +136,7 @@ node[:keepalived][:instances][:vi_1] = {
   :ip_addresses => '10.0.2.254',
   :interface => 'eth0',
   :track_script => 'chk_init',
+  :track_interface => 'eth1',
   :nopreempt => false,
   :advert_int => 1,
   :auth_type => nil, # :pass or :ah
