@@ -73,7 +73,7 @@ within the instance hash:
 * `:states => {}`                 # Node name mapped states
 * `:virtual_router_ids => {}`     # Node name mapped virtual router IDs
 * `:priorities => {}`             # Node name mapped priorities
-* `:track_script => 'check_name'` # Name of check script in use for instance
+* `:track_script => 'check_name'` # Name (or array of names) of check script in use for instance
 * `:nopreempt => false`           # Do not preempt
 * `:advert_int => 1`              # Set advert_int
 * `:auth_type => nil`             # Enable authentication (:pass or :ah)

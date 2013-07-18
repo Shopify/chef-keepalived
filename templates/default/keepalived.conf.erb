@@ -50,7 +50,9 @@ vrrp_instance <%= name.upcase %> {
   }
   <% if instance['track_script'] %>
   track_script {
-    <%= instance['track_script'] %>
+    <% Array(instance['track_script']).each do |script| %>
+    <%= script %>
+    <% end %>
   }
   <% end %>
 }
