@@ -79,6 +79,7 @@ within the instance hash:
 * `:advert_int => 1`              # Set advert_int
 * `:auth_type => nil`             # Enable authentication (:pass or :ah)
 * `:auth_pass => 'secret'`        # Password used for authentication
+* `:notify => 'script'`           # Script to invoke when instance changes state
 
 ### Full role based example
 
@@ -115,7 +116,8 @@ override_attributes(
         :nopreempt => false,
         :advert_int => 1,
         :auth_type => :pass,
-        :auth_pass => 'secret'
+        :auth_pass => 'secret',
+        :notify => '/usr/local/bin/notify-keepalived.sh'
       }
     }
   }

@@ -62,5 +62,8 @@ vrrp_instance <%= name.upcase %> {
     <% end %>
   }
   <% end %>
+  <% if instance['notify'] %>
+  notify "<%= instance['notify'] %>"
+  <% end %>
 }
 <% end -%>
