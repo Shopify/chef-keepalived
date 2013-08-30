@@ -30,6 +30,14 @@ if node['keepalived']['shared_address']
   end
 end
 
+directory '/var/run/keepalived'
+
+cookbook_file '/usr/local/bin/keepalived-notify.sh' do
+  owner "root"
+  group "root"
+  mode 00755
+end
+
 template "keepalived.conf" do
   path "/etc/keepalived/keepalived.conf"
   source "keepalived.conf.erb"
