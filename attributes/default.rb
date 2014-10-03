@@ -1,10 +1,12 @@
 default['keepalived']['shared_address'] = false
 default['keepalived']['global']['notification_emails'] = 'admin@example.com'
+default['keepalived']['global']['oncall_email'] = 'oncall@shopify.pagerduty.com'
 default['keepalived']['global']['notification_email_from'] = "keepalived@#{node['domain'] || 'example.com'}"
 default['keepalived']['global']['smtp_server'] = '127.0.0.1'
 default['keepalived']['global']['smtp_connect_timeout'] = 30
 default['keepalived']['global']['router_id'] = 'DEFAULT_ROUT_ID'
 default['keepalived']['global']['router_ids'] = {}   # node name based mapping
+default['keepalived']['global']['flowdock_notifications'] = '6552eadbbc512579f3ea4f72eef2a448' # Defaults to 'Ops'
 default['keepalived']['check_scripts'] = {}
 default['keepalived']['instance_defaults']['state'] = 'MASTER'
 default['keepalived']['instance_defaults']['priority'] = 100
