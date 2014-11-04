@@ -65,5 +65,13 @@ vrrp_instance <%= name.upcase %> {
   <% if instance['notify'] %>
   notify "<%= instance['notify'] %>"
   <% end %>
+
+  <%= if instance['virtual_ipaddress_excluded'] %>
+  virtual_ipaddress_excluded {
+    <% instance['virtual_ipaddress_excluded'].each do |ip| %>
+    <%= ip %>
+    <% end %>
+  }
+  <% end %>
 }
 <% end -%>
