@@ -32,7 +32,7 @@ end
 
 directory '/var/run/keepalived'
 
-cookbook_file '/usr/local/bin/keepalived-notify.sh' do
+template '/usr/local/bin/keepalived-notify.sh' do
   owner "root"
   group "root"
   mode 00755

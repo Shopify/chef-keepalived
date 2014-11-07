@@ -1,0 +1,24 @@
+#!/bin/bash
+# Modified notification script invoked for keepalive transitions.
+# 
+
+# Notifications will happen in at least three areas
+# 1. Messages sent to the 'Ops' flow in flowdock
+# 2. Emails sent to ops@shopify.com
+# 3. Pages sent to opsgoalie/oncall at the time
+
+ROLE_MONITORED="$1.$2"
+NEW_STATUS=$3
+MESSAGE="[$(hostname -f)] $ROLE_MONITORED keepalived state change. New status: $NEW_STATUS"
+FLOWDOCK_CHANNEL=<%= node['keepalived']['global']['flowdock_notifications'] %>
+
+if [ "$3" = "MASTER" ]; then
+  touch /var/run/keepalived/$2
+  # Contact oncall on pagerduty
+  echo "Keepalived state change on `hostname -f`" | mail -s "$MESSAGE" <%= node['keepalived']['global']['oncall_email'] %>
+else
+  rm /var/run/keepalived/$2
+fi
+
+# Send the alert to flowdock (ops by default) 
+curl -X POST --data "{  \"content\": \":boom: $MESSAGE\",  \"external_user_name\": \"Opsbot\" }" https://api.flowdock.com/v1/messages/chat/$FLOWDOCK_CHANNEL --header "Content-Type:application/json"
