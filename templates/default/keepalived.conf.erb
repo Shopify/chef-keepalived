@@ -15,8 +15,12 @@ global_defs {
 <% node['keepalived']['check_scripts'].each_pair do |name, script| %>
 vrrp_script <%= name %> {
   script "<%= script['script'] %>"
+  <% if script['interval'] -%>
   interval <%= script['interval'] %>
+  <% end -%>
+  <% if script['weight'] -%>
   weight <%= script['weight'] %>
+  <% end -%>
 }
 <% end %>
 
